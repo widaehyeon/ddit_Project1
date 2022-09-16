@@ -36,9 +36,6 @@ public class JoinController {
         CustomerVO vo = new CustomerVO();
         vo.setMemId(session.getMemId());
         switch (menu) {
-            case MODIFY_NAME:
-                vo.setMemName(modifyData);
-                break;
             case MODIFY_ADDRESS:
                 vo.setMemAdd(modifyData);
                 break;
@@ -53,5 +50,12 @@ public class JoinController {
         vo.setMemId(session.getMemId());
         vo.setMemPass(password);
         return service.modifyPassword(vo);
+    }
+    
+    public int withdraw(String memState) {
+        CustomerVO vo = new CustomerVO();
+        vo.setMemId(session.getMemId());
+        vo.setMemState(memState);
+        return service.withdraw(vo);
     }
 }

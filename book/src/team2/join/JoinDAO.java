@@ -14,8 +14,8 @@ public class JoinDAO {
 
     private JdbcTemplate template = BookstoreApplication.getTemplate();
 
-    public CustomerVO findCustomer(String id) {
-        return template.queryForObject("SELECT CUST_ID, NAME, ADDRESS, PHONE FROM CUSTOMER WHERE CUST_ID = ?", new BeanPropertyRowMapper<>(CustomerVO.class), id);
+    public CustomerVO findCustomer(String memId) {
+        return template.queryForObject("SELECT MEM_ID, MEM_NAME, MEM_TEL, MEM_ADD, MEM_REGNO1, MEM_GRADE FROM MEMBER WHERE MEM_ID = ?", new BeanPropertyRowMapper<>(CustomerVO.class), memId);
     }
 
     public int join(CustomerVO vo) {
@@ -27,14 +27,18 @@ public class JoinDAO {
     }
 
     public int modifyAddress(CustomerVO vo) {
-        return template.update("UPDATE CUSTOMER SET ADDRESS = ? WHERE CUST_ID = ?", vo.getMemAdd(), vo.getMemId());
+        return template.update("UPDATE MEMBER SET MEM_ADD = ? WHERE MEM_ID = ?", vo.getMemAdd(), vo.getMemId());
     }
 
     public int modifyPhone(CustomerVO vo) {
-        return template.update("UPDATE CUSTOMER SET PHONE = ? WHERE CUST_ID = ?", vo.getMemTel(), vo.getMemId());
+        return template.update("UPDATE MEMBER SET MEM_TEL = ? WHERE MEM_ID = ?", vo.getMemTel(), vo.getMemId());
     }
 
     public int modifyPassword(CustomerVO vo) {
-        return template.update("UPDATE CUSTOMER SET PASSWORD = ? WHERE CUST_ID = ?", vo.getMemPass(), vo.getMemId());
+        return template.update("UPDATE MEMBER SET MEM_PASS = ? WHERE MEM_ID = ?", vo.getMemPass(), vo.getMemId());
+    }
+    
+    public int withdraw(CustomerVO vo) {
+        return template.update("UPDATE MEMBER SET MEM_STATE = ? WHERE MEM_ID = ?", vo.getMemState(), vo.getMemId());
     }
 }

@@ -48,17 +48,19 @@ public class Home {
                     case BOOK_SEARCH:
                         number = view.searchBook(bookController);
                         break;
-                    case CUSTOMER_INFO:
-                        number = view.getCustomerInfo(joinController);
+                    case MEMBER_INFO:
+                        number = view.getMemberInfo(joinController);
                         break;
-                    case MODIFY_NAME:
                     case MODIFY_ADDRESS:
                     case MODIFY_PHONE:
                         number = view.modifyInfo(joinController, menu);
                         break;
-                    case CUSTOMER_MODIFY_PASSWORD:
+                    case MODIFY_PASSWORD:
                         number = view.changePassword(joinController);
                         break;
+                    case MEMBER_WITHDRAW:
+                    	number = view.withdrawId(joinController);
+                    	break;
                     case QUIT:
                         break loop;
                 }

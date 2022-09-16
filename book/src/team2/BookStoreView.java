@@ -118,12 +118,14 @@ public class BookStoreView {
         return HomeMenu.BOOK.getMenu();
     }
 
-    public int getCustomerInfo(JoinController controller) {
+    public int getMemberInfo(JoinController controller) {
         CustomerVO customer = controller.findCustomer();
-        System.out.printf("아이디: %d\n", customer.getMemId());
+        System.out.printf("아이디: %s\n", customer.getMemId());
         System.out.printf("이름: %s\n", customer.getMemName());
-        System.out.printf("주소: %s\n", customer.getMemAdd());
         System.out.printf("휴대전화번호: %s\n", customer.getMemTel());
+        System.out.printf("주소: %s\n", customer.getMemAdd());
+        System.out.printf("생년월일: %s\n", customer.getMemRegno1());
+        System.out.printf("등급: %s\n", customer.getMemGrade());
         return HomeMenu.MEMBER.getMenu();
     }
 
@@ -148,6 +150,18 @@ public class BookStoreView {
             System.out.println("비밀번호가 일치하지 않습니다. 비밀번호 변경을 취소합니다.");
         }
         return HomeMenu.MEMBER.getMenu();
+    }
+    
+    public int withdrawId(JoinController controller) {
+    	scanner.nextLine();
+    	String confirmMessage = scanner.nextLine();
+    	if(confirmMessage.equals("Y")||confirmMessage.equals("y")) {
+    		System.out.println("회원탈퇴가 처리되었습니다.");
+    		controller.withdraw("0");
+    		return HomeMenu.HOME.getMenu();
+    	} else{
+    		return HomeMenu.MEMBER.getMenu();
+    	}
     }
 
 }

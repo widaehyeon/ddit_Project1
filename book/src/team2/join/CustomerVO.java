@@ -8,8 +8,12 @@ public class CustomerVO {
     private String memAdd;
     private String memRegno1;
     private String memRegno2;
+    private String memGrade;
+    private String memState;
 
-    public CustomerVO() {
+
+
+	public CustomerVO() {
     }
 
     public CustomerVO(String memId, String memPass) {
@@ -84,6 +88,22 @@ public class CustomerVO {
 		this.memRegno2 = memRegno2;
 	}
 
+	public String getMemGrade() {
+		return memGrade;
+	}
+	
+	public void setMemGrade(String memGrade) {
+		this.memGrade = memGrade;
+	}
+	
+	public String getMemState() {
+		return memState;
+	}
+	
+	public void setMemState(String memState) {
+		this.memState = memState;
+	}
+	
 	public void invalidate() {
         this.memId = null;
         this.memPass = null;

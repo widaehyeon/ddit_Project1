@@ -11,8 +11,8 @@ public class JoinService {
 
     private JoinDAO dao = JoinDAO.getInstance();
 
-    public CustomerVO findCustomer(String id) {
-        return dao.findCustomer(id);
+    public CustomerVO findCustomer(String memId) {
+        return dao.findCustomer(memId);
     }
 
     public int join(CustomerVO vo) {
@@ -22,9 +22,6 @@ public class JoinService {
     public int modifyInfo(CustomerVO vo, HomeMenu menu) {
         int result = 0;
         switch (menu) {
-            case MODIFY_NAME:
-                result = dao.modifyName(vo);
-                break;
             case MODIFY_ADDRESS:
                 result = dao.modifyAddress(vo);
                 break;
@@ -37,5 +34,9 @@ public class JoinService {
 
     public int modifyPassword(CustomerVO vo) {
         return dao.modifyPassword(vo);
+    }
+    
+    public int withdraw(CustomerVO vo) {
+        return dao.withdraw(vo);
     }
 }
