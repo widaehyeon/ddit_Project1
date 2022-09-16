@@ -1,3 +1,3 @@
-DDIT_BeginnerProject 
+ddit_Project1
 # 대덕인재개발원 22/8 초급프로젝트 2팀 사서고생
 ## &#128218; 도서대출반납프로그램
