@@ -5,10 +5,12 @@ import java.sql.SQLException;
 import org.springframework.jdbc.core.JdbcTemplate;
 
 import oracle.jdbc.pool.OracleDataSource;
+import team2.book.BookVO;
 import team2.join.CustomerVO;
 
 public class BookstoreApplication {
     private static CustomerVO session = new CustomerVO();
+    private static BookVO sessionBook = new BookVO();
     private static JdbcTemplate template = new JdbcTemplate();
 
     public static void main(String[] args) {
@@ -18,6 +20,12 @@ public class BookstoreApplication {
     public static CustomerVO getSession() {
         return session;
     }
+    
+    public static BookVO getSessionBook() {
+        return sessionBook;
+    }
+    
+    
     public static JdbcTemplate getTemplate() {
         try {
             OracleDataSource dataSource = new OracleDataSource();

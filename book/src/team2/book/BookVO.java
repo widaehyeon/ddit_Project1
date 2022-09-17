@@ -5,71 +5,110 @@ import java.util.Objects;
 public class BookVO {
     private int bookId;
     private String bookName;
-    private String publisher;
-    private int price;
+    private String bookAuthor;
+    private String bookPub;
+    private String bookYear;
+    private String bookOrRen;
+    private String bookOrDel;
+    private String bookOutdate;
 
     public BookVO() {
-    }
+	}
+    
+	public BookVO(String bookName, String bookAuthor, String bookPub, String bookYear) {
+		this.bookName = bookName;
+		this.bookAuthor = bookAuthor;
+		this.bookPub = bookPub;
+		this.bookYear = bookYear;
+	}
 
-    public BookVO(int bookId, String bookName, String publisher, int price) {
-        this.bookId = bookId;
-        this.bookName = bookName;
-        this.publisher = publisher;
-        this.price = price;
-    }
+	public BookVO(int bookId, String bookName, String bookAuthor, String bookPub, String bookYear, String bookOrRen,
+			String bookOrDel, String bookOutdate) {
+		this.bookId = bookId;
+		this.bookName = bookName;
+		this.bookAuthor = bookAuthor;
+		this.bookPub = bookPub;
+		this.bookYear = bookYear;
+		this.bookOrRen = bookOrRen;
+		this.bookOrDel = bookOrDel;
+		this.bookOutdate = bookOutdate;
+	}
+	
+	public int getBookId() {
+		return bookId;
+	}
 
-    public int getBookId() {
-        return bookId;
-    }
+	public void setBookId(int bookId) {
+		this.bookId = bookId;
+	}
 
-    public void setBookId(int bookId) {
-        this.bookId = bookId;
-    }
+	public String getBookName() {
+		return bookName;
+	}
 
-    public String getBookName() {
-        return bookName;
-    }
+	public void setBookName(String bookName) {
+		this.bookName = bookName;
+	}
 
-    public void setBookName(String bookName) {
-        this.bookName = bookName;
-    }
+	public String getBookAuthor() {
+		return bookAuthor;
+	}
 
-    public String getPublisher() {
-        return publisher;
-    }
+	public void setBookAuthor(String bookAuthor) {
+		this.bookAuthor = bookAuthor;
+	}
 
-    public void setPublisher(String publisher) {
-        this.publisher = publisher;
-    }
+	public String getBookPub() {
+		return bookPub;
+	}
 
-    public int getPrice() {
-        return price;
-    }
+	public void setBookPub(String bookPub) {
+		this.bookPub = bookPub;
+	}
 
-    public void setPrice(int price) {
-        this.price = price;
-    }
+	public String getBookYear() {
+		return bookYear;
+	}
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        BookVO bookVO = (BookVO) o;
-        return bookId == bookVO.bookId && price == bookVO.price && Objects.equals(bookName, bookVO.bookName) && Objects.equals(publisher, bookVO.publisher);
-    }
+	public void setBookYear(String bookYear) {
+		this.bookYear = bookYear;
+	}
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(bookId, bookName, publisher, price);
-    }
+	public String getBookOrRen() {
+		return bookOrRen;
+	}
 
-    @Override
+	public void setBookOrRen(String bookOrRen) {
+		this.bookOrRen = bookOrRen;
+	}
+
+	public String getBookOrDel() {
+		return bookOrDel;
+	}
+
+	public void setBookOrDel(String bookOrDel) {
+		this.bookOrDel = bookOrDel;
+	}
+
+	public String getBookOutdate() {
+		return bookOutdate;
+	}
+
+	public void setBookOutdate(String bookOutdate) {
+		this.bookOutdate = bookOutdate;
+	}
+
+	@Override
     public String toString() {
         final StringBuilder sb = new StringBuilder("BookVO{");
         sb.append("bookId=").append(bookId);
         sb.append(", bookName='").append(bookName).append('\'');
-        sb.append(", publisher='").append(publisher).append('\'');
-        sb.append(", price=").append(price);
+        sb.append(", bookAuthor='").append(bookAuthor).append('\'');
+        sb.append(", bookPub=").append(bookPub);
+        sb.append(", bookYear=").append(bookYear);
+        sb.append(", bookOrRen=").append(bookOrRen);
+        sb.append(", bookOrDel=").append(bookOrDel);
+        sb.append(", bookOutdate=").append(bookOutdate);
         sb.append('}');
         return sb.toString();
     }

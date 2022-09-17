@@ -25,8 +25,11 @@ public class Home {
                 switch (menu) {
                     case HOME:
                     case MAIN:
-                    case BOOK:
+                    case MAINMANAGER:
+                    case BOOKMANAGE:
                     case MEMBER:
+                    case BOOK_SEARCH:
+                    case BOOK:
                     case CUSTOMER_MODIFY_INFO:
                         number = view.getMenu();
                         break;
@@ -42,16 +45,25 @@ public class Home {
                     case LOGOUT:
                         number = signController.signOut();
                         break;
+                    case BOOKADD:
+                    	number = view.bookAdd(bookController);
                     case BOOK_LIST:
                         number = view.getBookList(bookController);
                         break;
-                    case BOOK_SEARCH:
-                        number = view.searchBook(bookController);
+                    case BOOKSEARCH:
+                        number = view.getBookSearch(bookController);
+                        break;    
+                    case SEARCH_TITLE:
+                        number = view.searchBookTitle(bookController);
                         break;
+                    case SEARCH_AUTHOR:
+                    	number = view.searchBookAuthor(bookController);
+                    	break;
                     case MEMBER_INFO:
                         number = view.getMemberInfo(joinController);
                         break;
                     case MODIFY_ADDRESS:
+                //  case BOOKMODIFY:
                     case MODIFY_PHONE:
                         number = view.modifyInfo(joinController, menu);
                         break;
@@ -61,6 +73,8 @@ public class Home {
                     case MEMBER_WITHDRAW:
                     	number = view.withdrawId(joinController);
                     	break;
+                    case RECBOOKMANAGE:
+                        number = view.recBookManage(bookController);
                     case QUIT:
                         break loop;
                 }

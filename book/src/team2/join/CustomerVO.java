@@ -11,8 +11,6 @@ public class CustomerVO {
     private String memGrade;
     private String memState;
 
-
-
 	public CustomerVO() {
     }
 

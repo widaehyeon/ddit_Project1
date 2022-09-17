@@ -3,6 +3,7 @@ package team2;
 import java.util.Scanner;
 
 import team2.book.BookController;
+import team2.book.BookVO;
 import team2.common.HomeMenu;
 import team2.common.ScannerUtil;
 import team2.join.CustomerVO;
@@ -60,6 +61,33 @@ public class BookStoreView {
         }
         return number;
     }
+    
+    public int bookAdd(BookController controller) {
+        int number;
+        scanner.nextLine();
+        System.out.print("도서명: ");
+        String name = scanner.nextLine();
+        System.out.print("저자: ");
+        String author = scanner.nextLine();
+        System.out.print("출판사: ");
+        String pub = scanner.nextLine();
+        System.out.print("출판연도: ");
+        String year = scanner.nextLine();
+        number = controller.bookAdd(new BookVO(name, author, pub, year));
+        if (number == HomeMenu.BOOKMANAGE.getMenu()) {
+            System.out.println("도서등록이 완료되었습니다.");
+        } else {
+            System.out.print("도서등록 실패! 다시 시도 하시겠습니까?(y 또는 n을 입력): ");
+            String inputFlag = scanner.nextLine();
+            if (inputFlag.equalsIgnoreCase("y")) {
+                number = HomeMenu.BOOKADD.getMenu();
+            } else {
+                number = HomeMenu.BOOKMANAGE.getMenu();
+            }
+        }
+        return number;
+    }
+    
     public int login(SignController controller) {
         if(scanner.hasNextLine()) {
         	scanner.nextLine();
@@ -92,7 +120,7 @@ public class BookStoreView {
         SignVO vo = controller.signInManager(new SignVO(userId, userPw));
         if (vo != null) {
             System.out.println(vo.getMemName() + "님 로그인되었습니다.");
-            number = HomeMenu.MAIN.getMenu();
+            number = HomeMenu.MAINMANAGER.getMenu();
         } else {
             System.out.println("로그인 정보가 일치하지 않습니다.");
             number = HomeMenu.HOME.getMenu();
@@ -100,22 +128,49 @@ public class BookStoreView {
         return number;
     }
 
-
-    public int getBookList(BookController controller) {
-        controller.selectBookList("").forEach(bookVO -> {
-            System.out.printf("%d\t%s\t%s\t%d\n", bookVO.getBookId(), bookVO.getBookName(), bookVO.getPublisher(), bookVO.getPrice());
-        });
+    public int recBookManage(BookController controller) {
+        scanner.nextLine();
+        int recbookmanage = scanner.nextInt();
         return HomeMenu.BOOK.getMenu();
     }
 
-    public int searchBook(BookController controller) {
+    public int getBookListTitle(BookController controller) {
+        controller.selectBookListTitle("").forEach(bookVO -> {
+            System.out.printf("%d\t%s\t%s\t%s\t%s\n", bookVO.getBookId(), bookVO.getBookName(), bookVO.getBookAuthor(), bookVO.getBookPub(), bookVO.getBookYear());
+        });
+        return HomeMenu.BOOK.getMenu();
+    }
+    public int getBookList(BookController controller) {
+    	controller.selectBookListAuthor("").forEach(bookVO -> {
+    		System.out.printf("%d\t%s\t%s\t%s\t%s\n", bookVO.getBookId(), bookVO.getBookName(), bookVO.getBookAuthor(), bookVO.getBookPub(), bookVO.getBookYear());
+    	});
+    	return HomeMenu.BOOK.getMenu();
+    }
+    
+    public int getBookSearch(BookController controller) {
+    	controller.selectBookSearch("").forEach(bookVO -> {
+    		System.out.printf("%d\t%s\t%s\t%s\t%s\n", bookVO.getBookId(), bookVO.getBookName(), bookVO.getBookAuthor(), bookVO.getBookPub(), bookVO.getBookYear());
+    	});
+    	return HomeMenu.BOOKMANAGE.getMenu();
+    }
+
+    public int searchBookTitle(BookController controller) {
         // scanner의 nextInt()와 nextLine() 사이의 줄바꿈 특수문자 제거를 해줌
         scanner.nextLine();
         String searchWord = scanner.nextLine();
-        controller.selectBookList(searchWord).forEach(bookVO -> {
-            System.out.printf("%d\t%s\t%s\t%d\n", bookVO.getBookId(), bookVO.getBookName(), bookVO.getPublisher(), bookVO.getPrice());
+        controller.selectBookListTitle(searchWord).forEach(bookVO -> {
+            System.out.printf("%d\t%s\t%s\t%s\t%s\n", bookVO.getBookId(), bookVO.getBookName(), bookVO.getBookAuthor(), bookVO.getBookPub(), bookVO.getBookYear());
         });
         return HomeMenu.BOOK.getMenu();
+    }
+    public int searchBookAuthor(BookController controller) {
+    	// scanner의 nextInt()와 nextLine() 사이의 줄바꿈 특수문자 제거를 해줌
+    	scanner.nextLine();
+    	String searchWord = scanner.nextLine();
+    	controller.selectBookListAuthor(searchWord).forEach(bookVO -> {
+    		System.out.printf("%d\t%s\t%s\t%s\t%s\n", bookVO.getBookId(), bookVO.getBookName(), bookVO.getBookAuthor(), bookVO.getBookPub(), bookVO.getBookYear());
+    	});
+    	return HomeMenu.BOOK.getMenu();
     }
 
     public int getMemberInfo(JoinController controller) {
@@ -163,5 +218,7 @@ public class BookStoreView {
     		return HomeMenu.MEMBER.getMenu();
     	}
     }
+    
+    
 
 }
